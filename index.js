@@ -50,8 +50,8 @@ const server = http.createServer(async (req, res) => {
 	}
 });
 
-const host = "127.0.0.1";
-const port = 3000;
+const host = "0.0.0.0";
+const port = process.env.PORT ?? 3000;
 
 server.listen(port, host, () => {
 	console.log(`Listen for request on http://${host}:${port}`);

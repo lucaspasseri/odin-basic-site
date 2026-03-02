@@ -1,0 +1,20 @@
+{
+	"name": "odin-basic-site",
+	"version": "1.0.0",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/lucaspasseri/odin-basic-site.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/lucaspasseri/odin-basic-site/issues"
+	},
+	"homepage": "https://github.com/lucaspasseri/odin-basic-site#readme",
+	"description": ""
+}
