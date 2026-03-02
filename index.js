@@ -1,36 +1,58 @@
-import { createServer } from "node:http";
-import { readFile } from "node:fs/promises";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import http from "node:http";
+import * as fs from "node:fs/promises";
 
-const hostname = "127.0.0.1";
-const port = 3000;
+const pagesDir = "./pages/";
+const opt = { encoding: "utf8" };
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const style = `<style> 
+			html {min-height: 100vh}
+			header{ background-color: black; color: white; padding: 2em} 
+			body { height: 100%; margin: 0; background-color: white; color: black; display: flex; flex-direction: column}  
+			h1 {color:white;} 
+			main {padding: 2em; display: flex; justify-content: center; align-items:center; flex: 1 } 
+		</style>`;
 
-const server = createServer(async (req, res) => {
+const server = http.createServer(async (req, res) => {
 	try {
-		const url = new URL(req.url ?? "/", `http://${req.headers.host}`);
+		let filePath = "";
 
-		if (url.pathname === "/") {
-			const filePath = path.join(__dirname, "index.html");
-			const html = await readFile(filePath, "utf8");
+		switch (req.url) {
+			case "/":
+				res.statusCode = 200;
+				filePath = pagesDir + "index.html";
+				break;
 
-			res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-			res.end(html);
-			return;
+			case "/about":
+				res.statusCode = 200;
+				filePath = pagesDir + "about.html";
+				break;
+
+			case "/contact-me":
+				res.statusCode = 200;
+				filePath = pagesDir + "contact-me.html";
+				break;
+
+			default:
+				res.statusCode = 404;
+				filePath = pagesDir + "404.html";
+				break;
 		}
 
-		res.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-		res.end("Not found");
+		const page = await fs.readFile(filePath, opt);
+
+		res.setHeader("Content-Type", "text/html");
+		res.write(style);
+		res.end(page);
 	} catch (err) {
 		console.error(err);
 		res.writeHead(500, { "Content-Type": "text/plain; charset=utf-8" });
-		res.end("Internal server error");
+		res.end("500 - Internal Server Error");
 	}
 });
 
-server.listen(port, hostname, () => {
-	console.log(`Server running at http://${hostname}:${port}/`);
+const host = "127.0.0.1";
+const port = 3000;
+
+server.listen(port, host, () => {
+	console.log(`Listen for request on http://${host}:${port}`);
 });
