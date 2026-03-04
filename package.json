@@ -4,7 +4,7 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"start": "node index.js"
+		"start": "node --watch app.js"
 	},
 	"repository": {
 		"type": "git",
@@ -16,5 +16,8 @@
 		"url": "https://github.com/lucaspasseri/odin-basic-site/issues"
 	},
 	"homepage": "https://github.com/lucaspasseri/odin-basic-site#readme",
-	"description": ""
+	"description": "",
+	"dependencies": {
+		"express": "^5.2.1"
+	}
 }

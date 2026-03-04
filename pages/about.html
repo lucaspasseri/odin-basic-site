@@ -4,6 +4,69 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>ODIN basic site</title>
+		<style>
+			html {
+				min-height: 100vh;
+			}
+			header {
+				background-color: black;
+				color: white;
+				padding: 1.5em;
+			}
+			nav {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				align-items: center;
+				gap: 2em;
+			}
+			.logo {
+				width: 200px;
+				height: auto;
+			}
+
+			ul {
+				display: flex;
+				list-style: none;
+				gap: 1.5em;
+				font-size: 1.5em;
+				padding: 0;
+
+				a {
+					text-decoration: none;
+					color: white;
+
+					&:hover {
+						text-decoration: underline;
+					}
+				}
+			}
+			body {
+				height: 100%;
+				margin: 0;
+				background-color: white;
+				color: black;
+				display: flex;
+				flex-direction: column;
+			}
+			h1 {
+				color: white;
+			}
+			main {
+				padding: 1.5em;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex: 1;
+				font-size: 3em;
+				font-weight: bold;
+			}
+			@media (max-width: 500px) {
+				nav {
+					justify-content: center;
+				}
+			}
+		</style>
 	</head>
 	<body>
 		<header>
